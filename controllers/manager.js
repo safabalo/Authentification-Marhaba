@@ -14,7 +14,7 @@ const managerLogin = async (req, res) =>{
         const role = user.roles[0].roles
 
         if(role === "manager" ){
-            res.send('Bonjour '+user.nom + ' '+user.prenom + ' , votre rôle est : '+role)
+            res.send(`Bonjour ${user.prenom} ${user.nom}, votre rôle est : ${role}`)
         }
         else{
             res.send("you don't have acces to this page")

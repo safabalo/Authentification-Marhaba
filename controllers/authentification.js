@@ -14,7 +14,7 @@ const register = async (req, res)=>{
         res.json({message :"all fiels id required"})
     } 
     const double = await Users.findOne({ email: email }).exec();
-    if (double) return res.status(409); //Conflict 
+    if (double) return res.status(409).json({message: "This email already exist"}); //Conflict 
     const role = await Role.findOne({roles})
     if(!role) return res.send('not found')
     try{
@@ -42,7 +42,7 @@ const register = async (req, res)=>{
         
         res.status(201).json({ 'success': `New user ${users} created!` });
     }catch(err){
-        res.status(err.status || 500).json({ message: err.message || 'unexpected'});
+        res.status(500);
     }
 }
 
@@ -51,12 +51,11 @@ const register = async (req, res)=>{
 const Login = async (req, res) =>{
     const {prenom, email, password} = req.body;
     if (!email || !password){
-        res.status(err.status || 400)
+        res.status(400)
         res.json({ message:'Username and password are required.' })
     }
     const user = await Users.findOne({email: email}).exec();
     const match = await bcrypt.compare(password, user.password);
-    const status = user.status
     if(match && user.status == true){
         const token = jwt.sign({_id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'});
         user.token = token;
