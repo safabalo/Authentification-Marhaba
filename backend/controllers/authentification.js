@@ -7,16 +7,16 @@ const Role = require('../models/roles')
 
 // Registration
 
-const register = async (req, res)=>{
-    const {nom, prenom, email, password, status, roles} = req.body
-    if(!nom || !prenom || !email || !password || !roles){
+const register = async (req, res) => {
+    const {nom, prenom, email, password} = req.body
+    if(!nom || !prenom || !email || !password){
         res.status(400)
         res.json({message :"all fiels id required"})
     } 
     const double = await Users.findOne({ email: email }).exec();
     if (double) return res.status(409).json({message: "This email already exist"}); //Conflict 
-    const role = await Role.findOne({roles})
-    if(!role) return res.send('not found')
+    const role = await Role.findOne({roles: 'client'})
+    // if(!role) return res.send('not found')
     try{
 
         let hashedpassword = await bcrypt.hash(password, 10)
@@ -24,7 +24,6 @@ const register = async (req, res)=>{
             nom,
             prenom,
             email,
-            status,
             roles: role._id,
             password: hashedpassword
         })
@@ -49,7 +48,7 @@ const register = async (req, res)=>{
 // Login
 
 const Login = async (req, res) =>{
-    const {prenom, email, password} = req.body;
+    const {email, password} = req.body;
     if (!email || !password){
         res.status(400)
         res.json({ message:'Username and password are required.' })
