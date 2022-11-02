@@ -27,7 +27,7 @@ const register = async (req, res) => {
             roles: role._id,
             password: hashedpassword
         })
-        const userToken = jwt.sign({_id: users.id, email: users.email, nom: users.nom , prenom: users.prenom}, process.env.ACCESS_TOKEN_SECRET)
+        const userToken = jwt.sign({_id: users.id, email: users.email, nom: users.nom , prenom: users.prenom, roles: users.roles}, process.env.ACCESS_TOKEN_SECRET)
 
         let mailer = {
             from: ' "Verify your email" <marhababrief1@gmail.com> ',

@@ -1,9 +1,9 @@
 import React from "react";
-import Register from "../components/Registeration";
+import Registeration from "../components/Registeration";
 
 export default function Home() {
   return (
-    // <Register />
-    <div>Hello</div>
+    //<Registeration />
+     <div>Hello</div>
   );
 }

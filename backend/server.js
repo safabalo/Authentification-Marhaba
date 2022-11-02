@@ -3,6 +3,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const cors = require('cors')
 const mongoose = require('mongoose')
 const router = require('./routes/auth');
 const client = require('./routes/client');
@@ -11,6 +12,7 @@ const manager = require('./routes/manager');
 const globalError = require('./middleware/errorHandler');
 const errorHandler = require('./utils/error')
 const app = express();
+const allowedOrigins = require('./config/allowedOrigins')
 
 const PORT = process.env.PORT || 3000
 
@@ -18,6 +20,7 @@ connectDB();
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors())
 
 
 

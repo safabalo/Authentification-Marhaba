@@ -1,8 +1,9 @@
 import React from 'react'
+import NotFound from '../components/NotFound'
 
 function Nopage() {
   return (
-    <div>Nopage</div>
+    <NotFound />
   )
 }
 
