@@ -5,6 +5,8 @@ import NoPage from "./pages/NoPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import ForgetPassword from "./pages/Forgetpwd";
+import Reset from "./components/Resset";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="login" element={<Login />} />
+          <Route path="forgetpassword" element={<ForgetPassword />} />
+          <Route path="resetpassword/:token" element={<Reset/>} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

@@ -12,7 +12,7 @@ const manager = require('./routes/manager');
 const globalError = require('./middleware/errorHandler');
 const errorHandler = require('./utils/error')
 const app = express();
-const allowedOrigins = require('./config/allowedOrigins')
+// const allowedOrigins = require('./config/allowedOrigins')
 
 const PORT = process.env.PORT || 3000
 
@@ -20,7 +20,7 @@ connectDB();
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors({origin: true, credentials: true}))
 
 
 

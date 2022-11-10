@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 const verifyEmail = async (req,res)=>{
     let token = req.params.token
     const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-
     const result = await User.findOne({email: user.email})
 
     if(!result){
