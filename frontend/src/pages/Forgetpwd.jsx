@@ -1,21 +1,47 @@
 import React from 'react'
 import { useState} from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from '../api/axios';
 
 const FORGET_URL = 'http://localhost:3000/api/auth/forgetpassword'
 
 function ForgetPassword() {
   const [email, setEmail] = useState('')
+  let [errMsg, setErrMsg] = useState('')
   const data = {email}
-  const handleSubmit = async (e)=>{
+  const handleSubmit = async(e)=>{
     e.preventDefault()
-      await axios.post(FORGET_URL,data)
-      .then(() =>{
-        console.log("check your email")
+      if(email===""){
+        setErrMsg("Veuillez saisir votre email")
+      }else{
+        await axios.post(FORGET_URL,data)
+      .then((res) =>{
+        toast.info(res.data, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          })
       })
       .catch(err =>{
-        console.log(err.message)
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          })
      })
+    }
+      
   }
   return (
     <div className="lg:bg-[url('../public/neutral.png')] bg-cover w-screen h-screen flex justify-center items-center">
@@ -27,9 +53,11 @@ function ForgetPassword() {
             Email
             </span>
           </label>
-          <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} name="email" id="email" className=' block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm mb-5 hover:border-2  hover:border-cyan-500' />
+          <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} name="email" id="email" className=' block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none  focus:ring-sky-500 focus:ring-1 sm:text-sm mb-5 hover:border-2  hover:border-cyan-500' />
+          <span className='text-red-600 mb-2'>{errMsg}</span>
           <div className='flex justify-center items-center'>
-            <button className='rounded-full bg-red-500 active:bg-red-600 active:text-white text-white w-32 p-2 hover:text-red-600 font-bold hover:bg-white border-2 border-red-500'>Register</button>
+            <button className='rounded-full bg-red-500 active:bg-red-600 active:text-white text-white w-32 p-2 hover:text-red-600 font-bold hover:bg-white border-2 border-red-500'>Envoyer</button>
+            <ToastContainer />
           </div>
           
         </form>

@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import axios from "../api/axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LOGIN_URL = "http://localhost:3000/api/auth/login";
 
@@ -15,10 +17,28 @@ function Log() {
     axios
       .post(LOGIN_URL, data, { withCredentials: true })
       .then(res => {
-        console.log(res.data);
+        toast.success(res.data, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       })
       .catch(err => {
-        console.log(err);
+        toast.error(err,{
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       });
   };
   return (
@@ -56,6 +76,7 @@ function Log() {
             <button className="rounded-full bg-red-500 active:bg-red-600 active:text-white text-white w-32 p-2 hover:text-red-600 font-bold hover:bg-white border-2 border-red-500">
               Register
             </button>
+            <ToastContainer />
           </div>
         </form>
       </div>

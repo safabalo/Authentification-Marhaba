@@ -70,7 +70,7 @@ const forgetPassword = async (req, res) => {
   const { email } = req.body;
   const user = await Users.findOne({ email: email });
   if (!user) {
-    res.send("Ce email n'existe pas");
+    res.status(401).json({message:"Ce email n'existe pas"});
   } else {
     const token = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET);
     let mailer = {
@@ -82,6 +82,7 @@ const forgetPassword = async (req, res) => {
          <a href="http://localhost:3001/resetpassword/${token}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
+    res.send('Consultez votre boite email')
   }
 };
 

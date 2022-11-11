@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "../api/axios";
 
 function Reset() {
@@ -18,13 +20,40 @@ function Reset() {
       await axios
         .post(RESET_URL, data)
         .then(res => {
-          alert(res.data);
+          toast.success(res.data, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
         })
         .catch(err => {
-          console.log(err.message);
+          toast.error(err.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
         });
     } else {
-      setPassword("Password doesnt match");
+      toast.warn("Password doesnt match", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     }
   };
   return (
@@ -62,8 +91,9 @@ function Reset() {
           {/* <span className="text-red-500"></span> */}
           <div className="flex justify-center items-center">
             <button className="rounded-full bg-red-500 active:bg-red-600 active:text-white text-white w-32 p-2 hover:text-red-600 font-bold hover:bg-white border-2 border-red-500">
-              Register
+              Changer
             </button>
+            <ToastContainer />
           </div>
         </form>
       </div>
