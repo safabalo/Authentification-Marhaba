@@ -40,7 +40,7 @@ const { nom, prenom, email} = req.body;
     };
     await transporter.sendMail(mailer);
 
-    res.status(201).json({ success: `New user ${users} created!` });
+    res.send(`New user ${users} created!`);
   } catch (err) {
     res.status(500);
   }

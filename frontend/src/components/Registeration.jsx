@@ -19,7 +19,7 @@ function Registeration() {
     e.preventDefault()
       await axios.post(url, data)
     .then((res)=>{
-      toast.success(res.data, {
+      toast.success("Un email a été envoyer a votre compte", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

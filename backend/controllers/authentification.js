@@ -33,11 +33,11 @@ const register = async (req, res) => {
       subject: "Marhaba -Verify your email",
       html: `<h2>${users.prenom} ${users.nom} Merci pour votre inscription</h2>
             <h4> Veuillez vous confirmé votre email pour continuer...
-            <a href="http://localhost:3001/api/auth/verify-email/${userToken}">Cliquer pour verifier </a>`,
+            <a href="http://localhost:3000/api/auth/verify-email/${userToken}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
 
-    res.status(201).json({ success: `New user ${users} created!` });
+    res.send(`New user ${users} created!` );
   } catch (err) {
     res.status(500);
   }

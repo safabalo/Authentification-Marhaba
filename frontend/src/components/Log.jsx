@@ -4,6 +4,7 @@ import axios from "../api/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Link} from 'react-router-dom'
+import foodIcon from "../assets/images/delivrey.png";
 
 // const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
@@ -11,24 +12,18 @@ const LOGIN_URL = "http://localhost:3000/api/auth/login";
 
 function Log() {
   const [email, setEmail] = useState("");
-  const [emailErr, setEmailErr]= useState("")
+  // const [emailErr, setEmailErr]= useState("")
 
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const data = { email, password };
   const handleSubmit = e => {
     e.preventDefault();
-    
-      if(password=== " " || email === " " ){
-        setEmailErr("Veuillez saisir votre email")
-        setErrMsg("Veuillez saisir votre mot de passe")
-      }else{
-
-      
         axios
         .post(LOGIN_URL, data, { withCredentials: true })
           .then(res => {
-          toast.success(res.data, {
+          console.log(res.data)
+          toast.success("Vous étes authentifier", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -40,7 +35,8 @@ function Log() {
             });
         })
         .catch(err => {
-          toast.error(err,{
+          console.log(err)
+          toast.error(err.message,{
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -51,15 +47,18 @@ function Log() {
             theme: "colored",
             });
         });
-      }
+
       
   };
   return (
     <div className="lg:bg-[url('../public/neutral.png')] bg-cover w-screen h-screen flex justify-center items-center">
-      <div className="w-7/12 flex justify-center items-center bg-white h-4/5 rounded-3xl">
+      <div className="w-7/12 flex  items-center bg-white h-4/5 rounded-3xl flex-col">
+        <div className="mt-16 w-20 h-20">
+          <img src={foodIcon} alt="" className="w-full h-full rounded-full" />
+        </div>
         <form className="bg-white flex flex-col w-1/2" onSubmit={handleSubmit}>
-          <h1 className="text-center">Login</h1>
-          <label htmlFor="email">
+          <h1 className="text-center my-5 font-extrabold text-red-600 text-2xl font-mono">Login</h1>
+          <label htmlFor="email" className="mb-2">
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
               Email
             </span>
@@ -70,10 +69,11 @@ function Log() {
             onChange={e => setEmail(e.target.value)}
             name="email"
             id="email"
+            placeholder="Inserer votre email"
             className=" block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm mb-5 hover:border-2  hover:border-cyan-500"
           />
-          <span>{emailErr}</span>
-          <label htmlFor="password">
+          {/* <span>{emailErr}</span> */}
+          <label htmlFor="password" className="mb-2">
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
               Mot de passe
             </span>
@@ -83,6 +83,7 @@ function Log() {
             value={password}
             onChange={e => setPassword(e.target.value)}
             name="password"
+            placeholder="Inserer votre mot de passe"
             id="password"
             className="block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm hover:border-2  hover:border-cyan-500"
           />
