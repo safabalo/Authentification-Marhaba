@@ -6,7 +6,7 @@ import axios from "../api/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Livreur() {
+function LivreurAdd() {
   const [showModal, setShowModal] = useState(false);
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
@@ -144,14 +144,9 @@ function Livreur() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              <a
-                href="#"
-                type="button"
-                data-modal-toggle="editUserModal"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
+              
                 Edit user
-              </a>
+              
             </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -192,14 +187,9 @@ function Livreur() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              <a
-                href="#"
-                type="button"
-                data-modal-toggle="editUserModal"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
+              
                 Edit user
-              </a>
+              
             </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -240,14 +230,9 @@ function Livreur() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              <a
-                href="#"
-                type="button"
-                data-modal-toggle="editUserModal"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
+              
                 Edit user
-              </a>
+              
             </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -288,14 +273,9 @@ function Livreur() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              <a
-                href="#"
-                type="button"
-                data-modal-toggle="editUserModal"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
+              
                 Edit user
-              </a>
+              
             </td>
           </tr>
           <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -336,14 +316,9 @@ function Livreur() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              <a
-                href="#"
-                type="button"
-                data-modal-toggle="editUserModal"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
+              
                 Edit user
-              </a>
+              
             </td>
           </tr>
         </tbody>
@@ -453,4 +428,4 @@ function Livreur() {
   );
 }
 
-export default Livreur;
+export default LivreurAdd;

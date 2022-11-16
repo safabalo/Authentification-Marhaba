@@ -33,11 +33,11 @@ const register = async (req, res) => {
       subject: "Marhaba -Verify your email",
       html: `<h2>${users.prenom} ${users.nom} Merci pour votre inscription</h2>
             <h4> Veuillez vous confirmé votre email pour continuer...
-            <a href="http://localhost:3000/api/auth/verify-email/${userToken}">Cliquer pour verifier </a>`,
+            <a href="http://localhost:3001/verify-email/${userToken}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
 
-    res.send(`New user ${users} created!` );
+    res.send(`New user ${users} created!`);
   } catch (err) {
     res.status(500);
   }
@@ -47,17 +47,24 @@ const register = async (req, res) => {
 
 const Login = async (req, res) => {
   const { email, password } = req.body;
+
   if (!email || !password) {
     res.status(400);
     res.json({ message: "Username and password are required." });
   }
-  const user = await Users.findOne({ email: email }).exec();
+  const user = await Users.findOne({ email }).populate('roles')
+  const role = user.roles[0].roles
   const match = await bcrypt.compare(password, user.password);
   if (match && user.status == true) {
     const token = jwt.sign({ _id: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1d" });
     user.token = token;
-    const result = await user.save();
-    res.cookie("jwt", token, { httpOnly: false, maxAge: 24 * 60 * 60 * 1000 }).json({ token });
+    await user.save();
+    res.cookie("jwt", token, { httpOnly: false, maxAge: 24 * 60 * 60 * 1000 });
+    res.status(200).json({
+      token,
+      user,
+      role
+    });
   } else {
     res.status(401);
     res.json({ message: "Unauthorized check your email to verify your account or enter correct password" });
@@ -70,7 +77,7 @@ const forgetPassword = async (req, res) => {
   const { email } = req.body;
   const user = await Users.findOne({ email: email });
   if (!user) {
-    res.status(401).json({message:"Ce email n'existe pas"});
+    res.status(401).json({ message: "Ce email n'existe pas" });
   } else {
     const token = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET);
     let mailer = {
@@ -82,7 +89,7 @@ const forgetPassword = async (req, res) => {
          <a href="http://localhost:3001/resetpassword/${token}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
-    res.send('Consultez votre boite email')
+    res.send("Consultez votre boite email");
   }
 };
 

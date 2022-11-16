@@ -60,7 +60,7 @@ function Reset() {
     <div className="lg:bg-[url('../public/neutral.png')] bg-cover w-screen h-screen flex justify-center items-center">
       <div className="w-7/12 flex justify-center items-center bg-white h-4/5 rounded-3xl">
         <form className="bg-white flex flex-col w-1/2" onSubmit={handleSubmit}>
-          <h1 className="text-center">Resset Password</h1>
+          <h1 className="text-center my-5 font-extrabold text-red-600 text-2xl font-mono">Resset Password</h1>
           <label htmlFor="password">
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
               Mot de passe

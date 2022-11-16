@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 
 const Roles = new Schema({
   roles: String,
-
 });
 
 let Role = mongoose.model("Role", Roles);

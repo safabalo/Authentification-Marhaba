@@ -88,9 +88,15 @@ function Log() {
             className="block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm hover:border-2  hover:border-cyan-500"
           />
           <span>{errMsg}</span>
-          <Link to={'/register'} className="mb-5 mt-2 ml-7">
+          <div className="mb-1 flex">
+            <Link to={'/register'} className="mb-1 mt-2">
             <p className="text-gray-400">Vous n'avez pas de compte inscrit toi</p>
-          </Link>
+            </Link>
+            <Link to={'/forgetpassword'} className="mt-2">
+            <p className="text-red-500">Vous avez oublier votre mot de passe ?</p>
+            </Link>
+          </div>
+          
           <div className="flex justify-center items-center">
             <button className="rounded-full bg-red-500 active:bg-red-600 active:text-white text-white w-32 p-2 hover:text-red-600 font-bold hover:bg-white border-2 border-red-500">
               Login

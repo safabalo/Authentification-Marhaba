@@ -12,7 +12,7 @@ const manager = require('./routes/manager');
 const globalError = require('./middleware/errorHandler');
 const errorHandler = require('./utils/error')
 const app = express();
-// const allowedOrigins = require('./config/allowedOrigins')
+
 
 const PORT = process.env.PORT || 3000
 
