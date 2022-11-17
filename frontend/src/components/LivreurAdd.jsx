@@ -144,9 +144,7 @@ function LivreurAdd() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              
-                Edit user
-              
+              Edit user
             </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -187,9 +185,7 @@ function LivreurAdd() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              
-                Edit user
-              
+              Edit user
             </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -230,9 +226,7 @@ function LivreurAdd() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              
-                Edit user
-              
+              Edit user
             </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -273,9 +267,7 @@ function LivreurAdd() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              
-                Edit user
-              
+              Edit user
             </td>
           </tr>
           <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -316,9 +308,7 @@ function LivreurAdd() {
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              
-                Edit user
-              
+              Edit user
             </td>
           </tr>
         </tbody>
@@ -399,22 +389,22 @@ function LivreurAdd() {
                         />
                       </div>
                     </div>
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className="bg-amber-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="submit"
-                    // onClick={() => setShowModal(false)}
-                  >
-                    Save Changes
-                  </button>
-                </div>
+                    <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                      <button
+                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Close
+                      </button>
+                      <button
+                        className="bg-amber-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="submit"
+                        // onClick={() => setShowModal(false)}
+                      >
+                        Save Changes
+                      </button>
+                    </div>
                   </form>
                 </div>
                 {/*footer*/}

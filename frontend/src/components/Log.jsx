@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "../api/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Link} from 'react-router-dom'
+import {json, Link, useNavigate} from 'react-router-dom'
 import foodIcon from "../assets/images/delivrey.png";
 
 // const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
@@ -11,6 +11,7 @@ import foodIcon from "../assets/images/delivrey.png";
 const LOGIN_URL = "http://localhost:3000/api/auth/login";
 
 function Log() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   // const [emailErr, setEmailErr]= useState("")
 
@@ -23,6 +24,7 @@ function Log() {
         .post(LOGIN_URL, data, { withCredentials: true })
           .then(res => {
           console.log(res.data)
+          localStorage.setItem('auth',JSON.stringify(res.data))
           toast.success("Vous étes authentifier", {
             position: "top-right",
             autoClose: 5000,
@@ -33,6 +35,15 @@ function Log() {
             progress: undefined,
             theme: "colored",
             });
+            let authentification = localStorage.getItem("auth");
+            let auth = JSON.parse(authentification)
+            if(auth.token && auth.role === "client"){
+              navigate('/client/me')
+            }else if(auth.token && auth.role === "livreur"){
+              navigate('/livreur/me')
+            }else if(auth.token && auth.role === "manager"){
+              navigate('/manager/livreur')
+            }
         })
         .catch(err => {
           console.log(err)
@@ -47,8 +58,7 @@ function Log() {
             theme: "colored",
             });
         });
-
-      
+        
   };
   return (
     <div className="lg:bg-[url('../public/neutral.png')] bg-cover w-screen h-screen flex justify-center items-center">

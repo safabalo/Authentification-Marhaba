@@ -1,14 +1,11 @@
-const bcrypt = require('bcryptjs');
-const Users = require('../models/users');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const Users = require("../models/users");
+const jwt = require("jsonwebtoken");
 const { transporter } = require("../middleware/nodemail");
 const Role = require("../models/roles");
 
-
-
-const AddingLivreur = async (req, res) =>{
-
-const { nom, prenom, email} = req.body;
+const AddingLivreur = async (req, res) => {
+  const { nom, prenom, email } = req.body;
   if (!nom || !prenom || !email) {
     res.status(400);
     res.json({ message: "all fiels id required" });
@@ -36,7 +33,7 @@ const { nom, prenom, email} = req.body;
       html: `<h2>${users.prenom} ${users.nom} Merci pour votre inscription</h2>
             <h3> Votre mot de passe est: <strong>${password}</strong></h4>
             <h4> Veuillez vous confirmé votre email pour continuer...
-            <a href="http://localhost:3001/api/auth/verify-email/${userToken}">Cliquer pour verifier </a>`,
+            <a href="http://localhost:3001/verify-email/${userToken}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
 
@@ -46,27 +43,26 @@ const { nom, prenom, email} = req.body;
   }
 };
 
-const livreurLogin = async (req, res) =>{ 
-    let token = req.cookies.jwt;
-    if(!token){
-        console.log('error')
-    }else{
-        const verify = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-        const id = verify._id
-        const user = await Users.findOne({_id: id}).populate("roles")
+const livreurLogin = async (req, res) => {
+  let token = req.cookies.jwt;
+  if (!token) {
+    console.log("error");
+  } else {
+    const verify = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const id = verify._id;
+    const user = await Users.findOne({ _id: id }).populate("roles");
 
-        const role = user.roles[0].roles
+    const role = user.roles[0].roles;
 
-        if(role === "livreur" ){
-            res.send(`Bonjour ${user.prenom} ${user.nom}, votre rôle est : ${role}`)
-        }
-        else{
-            res.send("you don't have acces to this page")
-        }
-    }   
-}
+    if (role === "livreur") {
+      res.send(`Bonjour ${user.prenom} ${user.nom}, votre rôle est : ${role}`);
+    } else {
+      res.send("you don't have acces to this page");
+    }
+  }
+};
 
 module.exports = {
-    livreurLogin,
-    AddingLivreur
-}
+  livreurLogin,
+  AddingLivreur,
+};

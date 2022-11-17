@@ -52,8 +52,8 @@ const Login = async (req, res) => {
     res.status(400);
     res.json({ message: "Username and password are required." });
   }
-  const user = await Users.findOne({ email }).populate('roles')
-  const role = user.roles[0].roles
+  const user = await Users.findOne({ email }).populate("roles");
+  const role = user.roles[0].roles;
   const match = await bcrypt.compare(password, user.password);
   if (match && user.status == true) {
     const token = jwt.sign({ _id: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1d" });
@@ -63,7 +63,7 @@ const Login = async (req, res) => {
     res.status(200).json({
       token,
       user,
-      role
+      role,
     });
   } else {
     res.status(401);

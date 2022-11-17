@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const Users = new Schema({
-  nom: String, 
+  nom: String,
   prenom: String,
   email: String,
   status: {
@@ -13,9 +13,9 @@ const Users = new Schema({
   roles: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Role'
-    }
-  ]
+      ref: "Role",
+    },
+  ],
 });
 
 let User = mongoose.model("Users", Users);

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Clients() {
-  return (
-    <div className='h-screen w-full'>Clients</div>
-  )
+  return <div className="h-screen w-full">Clients</div>;
 }
 
-export default Clients
+export default Clients;
