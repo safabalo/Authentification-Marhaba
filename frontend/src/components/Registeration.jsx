@@ -13,7 +13,7 @@ function Registeration() {
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
 
-  const url = "http://localhost:3000/api/auth/register";
+  const url = "http://localhost:5000/api/auth/register";
   const data = { nom, prenom, email, password };
   const handleSubmit = e => {
     e.preventDefault();

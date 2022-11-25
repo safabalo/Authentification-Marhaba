@@ -8,7 +8,7 @@ import foodIcon from "../assets/images/delivrey.png";
 
 // const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
-const LOGIN_URL = "http://localhost:3000/api/auth/login";
+const LOGIN_URL = "http://localhost:5000/api/auth/login";
 
 function Log() {
   const navigate = useNavigate()

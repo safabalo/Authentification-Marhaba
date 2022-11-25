@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 
-const FORGET_URL = "http://localhost:3000/api/auth/forgetpassword";
+const FORGET_URL = "http://localhost:5000/api/auth/forgetpassword";
 
 function ForgetPassword() {
   const [email, setEmail] = useState("");

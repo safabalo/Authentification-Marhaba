@@ -7,7 +7,7 @@ function PrivateClientRoutes() {
   return auth.token && auth.role === "client" ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/*" />
   );
 }
 

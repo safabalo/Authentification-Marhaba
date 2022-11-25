@@ -7,7 +7,7 @@ function PrivateAdminRoutes() {
   return auth.token && auth.role === "manager" ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/*" />
   );
 }
 

@@ -33,7 +33,7 @@ const AddingLivreur = async (req, res) => {
       html: `<h2>${users.prenom} ${users.nom} Merci pour votre inscription</h2>
             <h3> Votre mot de passe est: <strong>${password}</strong></h4>
             <h4> Veuillez vous confirmé votre email pour continuer...
-            <a href="http://localhost:3001/verify-email/${userToken}">Cliquer pour verifier </a>`,
+            <a href="http://localhost:3000/verify-email/${userToken}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
 

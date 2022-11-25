@@ -7,7 +7,7 @@ function Verified() {
   let { userToken } = useParams();
   const navigate = useNavigate();
 
-  const Verified_URL = `http://localhost:3000/api/auth/verify-email/${userToken}`;
+  const Verified_URL = `http://localhost:5000/api/auth/verify-email/${userToken}`;
   axios
     .get(Verified_URL)
     .then(res => {

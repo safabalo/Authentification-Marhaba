@@ -33,7 +33,7 @@ const register = async (req, res) => {
       subject: "Marhaba -Verify your email",
       html: `<h2>${users.prenom} ${users.nom} Merci pour votre inscription</h2>
             <h4> Veuillez vous confirmé votre email pour continuer...
-            <a href="http://localhost:3001/verify-email/${userToken}">Cliquer pour verifier </a>`,
+            <a href="http://localhost:3000/verify-email/${userToken}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
 
@@ -86,7 +86,7 @@ const forgetPassword = async (req, res) => {
       subject: "Marhaba -Verify your email",
       html: `<h2>${user.prenom} ${user.nom} Avez vous perdu votre mot de passe ?</h2>
          <h4> Veuillez cliquer sur le lien pour changer votre mot de passe...
-         <a href="http://localhost:3001/resetpassword/${token}">Cliquer pour verifier </a>`,
+         <a href="http://localhost:3000/resetpassword/${token}">Cliquer pour verifier </a>`,
     };
     await transporter.sendMail(mailer);
     res.send("Consultez votre boite email");

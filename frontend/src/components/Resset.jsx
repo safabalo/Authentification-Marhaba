@@ -12,7 +12,7 @@ function Reset() {
   const [err, setError] = useState("");
   let { token } = useParams();
   const data = { password, token };
-  const RESET_URL = `http://localhost:3000/api/auth/resetpassword/${token}`;
+  const RESET_URL = `http://localhost:5000/api/auth/resetpassword/${token}`;
   const handleSubmit = async e => {
     e.preventDefault();
     console.log(token);

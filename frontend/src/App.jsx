@@ -10,13 +10,14 @@ import Reset from "./components/Resset";
 import LivreurAdd from "./components/LivreurAdd";
 import Verified from "./components/Verified";
 import Livreurs from "./components/Livreurs";
-import Clients from "./components/Clients"
+import Clients from "./components/Clients";
 import Livreur from "./pages/Livreur";
 import Client from "./pages/Client";
 import PrivateClientRoutes from "./utils/PrivateClientRoutes";
-import PrivateLivreurRoutes from "./utils/PrivateLivreurRoutes"
-import PrivateAdminRoutes from "./utils/PrivateAdminRoutes"
+import PrivateLivreurRoutes from "./utils/PrivateLivreurRoutes";
+import PrivateAdminRoutes from "./utils/PrivateAdminRoutes";
 import Logout from "./pages/Logout";
+import PrivateRoutes from "./utils/PrivateRoute";
 
 function App() {
   return (
@@ -31,19 +32,24 @@ function App() {
         <Route path="*" element={<NoPage />} />
         <Route path="/logout" element={<Logout />} />
 
-        <Route element={<PrivateAdminRoutes />}>
-          <Route path="manager" element={<Dashboard />}>
-            <Route path="livreur" element={<LivreurAdd />} /></Route>
-        </Route>
+        <Route element={<PrivateRoutes />}>
+          {/* Route manager */}
+          <Route element={<PrivateAdminRoutes />}>
+            <Route path="manager" element={<Dashboard />}>
+              <Route path="livreur" element={<LivreurAdd />} />
+            </Route>
+          </Route>
 
-        <Route element={<PrivateLivreurRoutes />}>
-          <Route path="livreur" element={<Livreur />}>
-            <Route path="me" element={<Livreurs />} /></Route>
-        </Route>
+          <Route element={<PrivateLivreurRoutes />}>
+            <Route path="livreur" element={<Livreur />}>
+              <Route path="me" element={<Livreurs />} />
+            </Route>
+          </Route>
 
-        <Route element={<PrivateClientRoutes />}>
-          <Route path="client" element={<Client />}>
-            <Route path="me" element={<Clients />} />
+          <Route element={<PrivateClientRoutes />}>
+            <Route path="client" element={<Client />}>
+              <Route path="me" element={<Clients />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
