@@ -7,13 +7,13 @@
    1. Backend Dockerfile
    2. Frontend Dokerfile
 2. Filling the files with image instruction
-3. Creating network to link between multiple docker host `docker network create app-net`
-4. Pulling mongo image and running container based on the image `docker container run -d --name marhaba-db -v marhaba-db:/data/db --network app-net mongo`
-5. Create backend image `docker build -t backend`
-6. Running the container `docker container run -d --name marhaba -v ${pwd}:/app -v /app/node_modules --network app-net -p 3000:3000 backend`
-7. for frontend we create network as first time `docker network create front`
-8. create Frontend image `docker build -t frontend`
-9. 
+3. Creating network to link between multiple docker host `docker network create livraison-marhaba-app-backend`
+4. Pulling mongo image and running container based on the image `docker container run -d --name marhaba-db -v marhaba-db:/data/db --network livraison-marhaba-app-backend mongo`
+5. Create backend image `docker build -t livraison-marhaba-backend`
+6. Running the container `docker container run -d --name livraison-marhaba-container -v ${pwd}:/app -v /app/node_modules --network livraison-marhaba-app-backend -p 3000:3000 livraison-marhaba-backend`
+7. for frontend we create network as first time `docker network create livraison-marhaba-app-frontend`
+8. create Frontend image `docker build -t livraison-marhaba-frontend .`
+9.  running container `docker container -d --name livraison-marhaba-container-front -v livraison-marhaba-app-frontend -p 3000:3000 livraison-marhaba-frontend`
 
 ### Second method : Using DockerCompose
 
