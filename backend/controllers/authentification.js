@@ -50,7 +50,7 @@ const Login = async (req, res) => {
 
   if (!email || !password) {
     res.status(400);
-    res.json({ message: "Username and password are required." });
+    res.json({ message: "Username and password are required!" });
   }
   const user = await Users.findOne({ email }).populate("roles");
   const role = user.roles[0].roles;

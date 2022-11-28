@@ -37,3 +37,5 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongodb");
   app.listen(PORT);
 });
+
+module.exports = app
